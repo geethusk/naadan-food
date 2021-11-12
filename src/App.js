@@ -2,7 +2,8 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const[count,setCount]=useState(0);     
+  const[count,setCount]=useState(0); 
+  const[counter,setCounter]=useState(1);   
   return (
      <div className="App">   
       <div 
@@ -30,7 +31,31 @@ function App() {
         +
       </div>
 
-    </div>
+      <div 
+      className="count_button"
+      onClick={
+        ()=>{
+          setCounter(counter/2);
+        }
+      }
+      >
+        /
+      </div>
+      <div className="count_value">
+        {counter}
+      </div>
+
+      <div 
+      className="count_button"
+      onClick={
+        ()=>{
+          setCounter(counter*2);
+        }
+      }
+      >
+        *
+      </div>
+      </div>
   );
 }
 
