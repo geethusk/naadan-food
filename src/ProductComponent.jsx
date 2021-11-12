@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import {Link} from 'react-router-dom'
+
 
 const ProductComponent = () => {  
     const[counter,setCounter]=useState(1); 
@@ -28,6 +30,8 @@ const ProductComponent = () => {
       >
         *
       </div>
+      <Link to="/" >Addition</Link>
+
         </>
     )
 }
