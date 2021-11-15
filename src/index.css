@@ -1,0 +1,67 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+    padding:0;
+}
+
+.food-card-list{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:10px;
+    padding:10px;
+}
+.food-card-thumbnail{
+    width:100%;
+    height: 200px;
+    /* border-image-width: 2px; */
+}
+.food-card-title{
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.food-card-price{
+    color: green;
+    font-size:20px;
+    font-weight:bold;
+    text-align: center;
+}
+.food-card-description{
+    overflow:hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient:vertical ;
+    color: #444;
+    font-weight:initial;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.food-card{
+    background-color:rgb(208, 247, 247);
+    box-shadow:1px 3px 9px 2px rgb(207, 206, 206);
+    cursor:pointer;
+    transition:transform 0.3s ease-in-out;
+}
+.food-card-details-section{
+    padding:10px;
+}
+.food-card:hover{
+/* outline:solid 2px rgb(120, 143, 19); */
+transform: scale(1.02);
+}
+.food-card-availability{
+    width:fit-content;
+    padding: 5px;
+    border-radius: 2px;
+    margin:5px 0;
+    margin:auto;
+}
+
+.food-card-availability--available{
+    background-color: #74ed47;
+}
+.food-card-availability--not-available{
+    background-color: rgb(252, 85, 85);
+    color:white;
+}

@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link,useRouteMatch} from 'react-router-dom'
 
 
 const ProductComponent = () => {  
     const[counter,setCounter]=useState(1); 
+    const match = useRouteMatch();
+    console.log(match.url);
     return (
         <>
             <div 
