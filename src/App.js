@@ -8,17 +8,17 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
+  Switch,
 } from "react-router-dom";
 
 const App=()=> {
   return (
      <div className="App">  
      <Router>
-       <Routes>
-         <Route path="/multi" element={<ProductComponent/> } />
-         { <Route path="/" element={<AppComponent/> } />   /*home page */}
-         </Routes>
+       <Switch>
+         <Route path="/multi" component={ProductComponent} />
+         { <Route path="/" component={AppComponent } />   /*home page */}
+         </Switch>
       </Router> 
       </div>
   );
