@@ -50,7 +50,37 @@ const totalFoodList= [
 ]
 const App= ()=>{
   const [foodList,setFoodList]=useState(totalFoodList)
+  const [sortInput,setSortInput]=useState();
+  const sort=(order)=>{
+     switch(order){
+       case"High to Low":
+       setFoodList(foodList.sort((second,first)=>first.price-second.price))
+       break;
+       case"Low To High":
+       setFoodList(foodList.sort((second,first)=>second.price-first.price))
+       break;
+       default:
+       break;
+     }
+  }
   return(
+    <>
+    <div className="sort-section">
+      <label>Price</label>
+        <select  
+        value={sortInput}
+        onChange={(e)=>{
+        setSortInput(e.target.value);
+        sort(e.target.value);
+        
+        }}
+        >
+           
+              <option value="Select">Select</option>
+              <option value="High to Low">High to Low</option>
+              <option value="Low To High">Low To High</option>
+        </select>
+    </div>
     <div className="food-card-list">
       {foodList.map((food,i)=>{
         return(<FoodCard
@@ -71,7 +101,8 @@ const App= ()=>{
         />)
      })}
      </div>
-  )
+     </>
+  );
   
   }
 
