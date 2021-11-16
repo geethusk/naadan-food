@@ -76,7 +76,7 @@ const App= ()=>{
         }}
         >
            
-              <option value="Select">Select</option>
+              <option value="">Select</option>
               <option value="High to Low">High to Low</option>
               <option value="Low To High">Low To High</option>
         </select>
