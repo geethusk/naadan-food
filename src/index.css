@@ -3,6 +3,9 @@
     box-sizing: border-box;
     padding:0;
 }
+.food-card:hover{
+    transform:scale(1.03);
+}
 
 .food-card-list{
     display: grid;
@@ -38,18 +41,23 @@
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
 .food-card{
-    background-color:rgb(208, 247, 247);
-    box-shadow:1px 3px 9px 2px rgb(207, 206, 206);
+    background-color:rgba(3, 94, 3, 0.473);
+    box-shadow:1px 3px 9px 2px rgba(131, 130, 130, 0.637);
     cursor:pointer;
-    transition:transform 0.3s ease-in-out;
+    transition:transform 0.2s ease-in-out;
+     position:relative;  /*cross button move cheyyikkan */
 }
 .food-card-details-section{
     padding:10px;
 }
-.food-card:hover{
-/* outline:solid 2px rgb(120, 143, 19); */
-transform: scale(1.02);
+ .food-card--deleted{
+    transform:scale(0);
+   
 }
+.food-card--deleted:hover{
+    transform:scale(0);
+}
+
 .food-card-availability{
     width:fit-content;
     padding: 5px;
@@ -64,4 +72,17 @@ transform: scale(1.02);
 .food-card-availability--not-available{
     background-color: rgb(252, 85, 85);
     color:white;
+}
+.food-card-close-button{
+    width: 25px;
+    height:25px;
+    position:absolute;
+    right:5px;
+    top:5px;
+    background-color: rgba(128, 128, 128, 0.342);
+    background-image: url(./assets/icons/times-solid.svg);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;   /* cross button center il place cheyyan */
+    border-radius: 20px;
 }

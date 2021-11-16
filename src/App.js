@@ -1,7 +1,9 @@
 import FoodCard from "./FoodCard";
+import {useState} from 'react';
 
-const FoodList= [
+const totalFoodList= [
 {
+  id:0,
   title: "chicken 65",
   price:160,
   status:true,
@@ -13,6 +15,7 @@ const FoodList= [
 },
 
 {
+  id:1,
   title: "chicken curry",
   price:70,
   status:true,
@@ -23,6 +26,7 @@ const FoodList= [
 },
 
 {
+  id:2,
   title: "chicken kabab",
   price:120,
   status:true,
@@ -33,6 +37,7 @@ const FoodList= [
   deliveryTime:"30min",
 },
 {
+  id:3,
   title: "chicken shawarma",
   price:110,
   status:false,
@@ -44,14 +49,30 @@ const FoodList= [
 },
 ]
 const App= ()=>{
+  const [foodList,setFoodList]=useState(totalFoodList)
   return(
     <div className="food-card-list">
-      {FoodList.map((food,i)=>{
-        return(<FoodCard {...food} key={i}/>)
+      {foodList.map((food,i)=>{
+        return(<FoodCard
+          {...food}
+          key={food.id}
+          closeCard={()=>{
+          setFoodList(foodList.filter((_val,index)=>i!=index))
+        }}
+        toggleStatus={()=>{
+          setFoodList(prev=>{
+            let newList=[...prev];
+            let newFood={...newList[i]};
+            newFood.status=!newFood.status;
+            newList[i]=newFood;
+            return newList;
+          })
+        }}
+        />)
      })}
      </div>
-  );
-
+  )
+  
   }
 
   export default App;
