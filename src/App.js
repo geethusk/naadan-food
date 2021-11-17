@@ -50,14 +50,22 @@ const totalFoodList= [
 ]
 const App= ()=>{
   const [foodList,setFoodList]=useState(totalFoodList)
-  const [sortInput,setSortInput]=useState();
+ //const [sortInput,setSortInput]=useState();
   const sort=(order)=>{
      switch(order){
        case"High to Low":
-       setFoodList(foodList.sort((second,first)=>first.price-second.price))
+       setFoodList(prev=>{
+        let newList=[...prev];
+        return newList.sort((second,first)=>first.price-second.price)
+       }
+       );
        break;
-       case"Low To High":
-       setFoodList(foodList.sort((second,first)=>second.price-first.price))
+      case"Low To High":
+      setFoodList(prev=>{
+        let newList=[...prev];
+        return newList.sort((second,first)=>second.price-first.price)
+       }
+       );
        break;
        default:
        break;
@@ -68,9 +76,9 @@ const App= ()=>{
     <div className="sort-section">
       <label>Price</label>
         <select  
-        value={sortInput}
+        //value={sortInput}
         onChange={(e)=>{
-        setSortInput(e.target.value);
+        //setSortInput(e.target.value);
         sort(e.target.value);
         
         }}

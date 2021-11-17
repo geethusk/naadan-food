@@ -86,3 +86,7 @@
     background-position:center;   /* cross button center il place cheyyan */
     border-radius: 20px;
 }
+.sort-section{
+    padding-top: 5px;
+    padding-left:5px;
+}
