@@ -53,6 +53,7 @@ const App= ()=>{
   const [foodList,setFoodList]=useState(totalFoodList)
  //const [sortInput,setSortInput]=useState();
  const [editScreenVisibility,setEditScreenVisibility]=useState(false);
+ const [editFoodIndex,setEditFoodIndex]=useState(null);
   const sort=(order)=>{
      switch(order){
        case"High to Low":
@@ -76,7 +77,8 @@ const App= ()=>{
   return(
     <>
     <div className="sort-section">
-      <label>Price</label>
+      <h1 className="heading">😍.......CREAM OF THE CROP.......😍</h1>
+      <div>
         <select  
         //value={sortInput}
         onChange={(e)=>{
@@ -90,6 +92,7 @@ const App= ()=>{
               <option value="High to Low">High to Low</option>
               <option value="Low To High">Low To High</option>
         </select>
+      </div>
     </div>
     <div className="food-card-list">
       {foodList.map((food,i)=>{
@@ -109,12 +112,18 @@ const App= ()=>{
           })
         }}
         editFood={()=>{
+          setEditFoodIndex(i)
           setEditScreenVisibility(true)
+
         }}
+
         />)
      })}
      </div>
-     {editScreenVisibility && <EditScreen setEditScreenVisibility={setEditScreenVisibility} />}
+     {editScreenVisibility && <EditScreen setEditScreenVisibility={setEditScreenVisibility} 
+     editFoodIndex={editFoodIndex}
+     foodList={foodList}
+     />}
      </>
   );
   
