@@ -161,7 +161,6 @@ label{
   color:white;
   text-align:center;
   font-weight:bold;
-  text-align: center;
 }
 h1{
     text-align:center;
@@ -169,8 +168,8 @@ h1{
 
 select{
     padding:10px 5px;
-    border-radius:5px;
-    background-color:black;
+    border-radius:15px;
+    background-color:#045992;
     color: white;
     box-shadow: 2px solid gray;
 

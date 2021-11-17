@@ -77,6 +77,7 @@ const App= ()=>{
   return(
     <>
     <div className="sort-section">
+      <img src="" alt="" />
       <h1 className="heading">😍.......CREAM OF THE CROP.......😍</h1>
       <div>
         <select  
