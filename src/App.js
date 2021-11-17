@@ -1,5 +1,6 @@
 import FoodCard from "./FoodCard";
 import {useState} from 'react';
+import EditScreen from "./EditScreen";
 
 const totalFoodList= [
 {
@@ -51,6 +52,7 @@ const totalFoodList= [
 const App= ()=>{
   const [foodList,setFoodList]=useState(totalFoodList)
  //const [sortInput,setSortInput]=useState();
+ const [editScreenVisibility,setEditScreenVisibility]=useState(false);
   const sort=(order)=>{
      switch(order){
        case"High to Low":
@@ -106,9 +108,13 @@ const App= ()=>{
             return newList;
           })
         }}
+        editFood={()=>{
+          setEditScreenVisibility(true)
+        }}
         />)
      })}
      </div>
+     {editScreenVisibility && <EditScreen setEditScreenVisibility={setEditScreenVisibility} />}
      </>
   );
   
