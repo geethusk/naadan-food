@@ -7,8 +7,8 @@ const Learn = () => {
     const [toDoList, setToDoList ] = useState([]);
     const [toDo, setToDo] = useState("");
         const addToDoList=()=>{
-            setToDoList(prev=>[...prev,toDo])
-            setToDo("")
+             setToDoList(prev=>[...prev,toDo])     //we always take previous array for  storing
+            setToDo("")        //to clear the text box once u done with the procedure .
         }
     return (
         <div>
@@ -23,13 +23,13 @@ const Learn = () => {
                 done</button>
 
             <ul id="list">
-                {toDoList.map((value,i)=><li key={i}
+                {toDoList.map((value,i)=><li>     
                 onClick={()=>{
                     setToDoList(toDoList.filter((_value,index)=>
-                     i!==index
-                    ))
+                     i!==index    //to check whether the data's are correct are not 
+                    ))     
                 }}
-                >{value}</li>)}
+                {value}</li>)}
                 </ul>
             </div>
           
