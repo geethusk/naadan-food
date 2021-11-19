@@ -199,11 +199,11 @@ select{
 }
 
 .status-circle{
-
+/* background-color:green; */
  height:20px;
  width:20px;
  border-radius:50%;
- border: solid 2px white;
+ border: 1px solid #808080;
 
 }
 .todo-text{
@@ -231,9 +231,8 @@ li{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     padding:10px;
 }
-.active{
+.status-circle--active{
     background-color:green;
+    border: solid 5px white;
 }
-.not-active{
-    background-color:white;
-}
+

@@ -8,7 +8,7 @@ const Learn = () => {
     const [toDo, setToDo] = useState("");
 
         const addToDoList=()=>{
-             setToDoList(prev=>[...prev,toDo])     
+             setToDoList(prev=>[...prev,{text:toDo,status:false}])     
             setToDo("")        
         }
     return (
@@ -25,22 +25,27 @@ const Learn = () => {
             
 
               <ul id="list">
-                    {toDoList.map((value,i)=><li>
-                        <div className="status-circle active not-active"
-                        onClick={()=>{
-                            
-                        }}
+                    {toDoList.map(({text,status},i)=><li>
+                        <div className={`status-circle ${status ? "status-circle--active" : ""}`}
+                            onClick={()=>{
+                                setToDoList(prev => {
+                                let newTodoList = [...prev];
+                                let newTodo = { ...newTodoList[i] };
+                                newTodo.status = !newTodo.status;
+                                newTodoList[i] = newTodo;
+                                return newTodoList;
+                                })
+                            }}
                         />
-                    <div className="todo-text">
-                    {value}
-                    </div>
-                    <div className="to-do-close-button"
-                         onClick={()=>{
-                            setToDoList(toDoList.filter((_value,index)=>
-                            i!==index    
-                            ))     
-                        }}
-                    />
+
+                        <div className="todo-text">
+                            {text}
+                        </div>
+                        <div className="to-do-close-button"
+                            onClick={() => {
+                                setToDoList(toDoList.filter((_value, index) => i !== index
+                                ));
+                            } } />
                     </li>)}
 
 
