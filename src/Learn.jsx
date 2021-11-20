@@ -10,7 +10,7 @@ const Learn = () => {
     const [duplicateError,setDuplicateError]=useState(false);
     const addToDoList=()=>{
         if(!toDo)return 
-            if(toDoList.filter(({text})=>toDo===text).length){
+            if(toDoList.filter(({text})=>toDo.toLowerCase()===text.toLowerCase()).length){
                 setDuplicateError(true);
                 setTimeout(()=>{
                     setDuplicateError(false);

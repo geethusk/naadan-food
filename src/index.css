@@ -268,3 +268,14 @@ li{
     text-align:right;
     right:30px;
 }
+@media screen and (max-width: 600px){
+    .todo-button{
+        padding:15px;
+    }
+    .duplicate-error{
+        right:65px;
+    }
+    .todo-item{
+        gap:5px;
+    }
+}

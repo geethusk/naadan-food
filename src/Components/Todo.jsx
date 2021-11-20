@@ -66,7 +66,7 @@ const Todo = ({
                             },1500)
                             return
                             } 
-                            if(toDoList.filter(({text})=>text===editText).length){
+                            if(text!==editText && toDoList.filter(({text})=>text.toLowerCase()===editText.toLowerCase()).length){
                                 setDuplicateError(true);
                                 setTimeout(()=>{
                                     setDuplicateError(false);
