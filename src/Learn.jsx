@@ -1,16 +1,19 @@
 import React from 'react'
 import {useState}  from 'react';
 import './index.css'
+import Todo from "./Components/Todo"
 
 
 const Learn = () => {
     const [toDoList, setToDoList ] = useState([]);
     const [toDo, setToDo] = useState("");
-
-        const addToDoList=()=>{
-             setToDoList(prev=>[...prev,{text:toDo,status:false}])     
-            setToDo("")        
-        }
+    // const [editField,setEditField]=useState();
+    const addToDoList=()=>{
+        if(!toDo)return 
+        setToDoList(prev=>[...prev,{text:toDo,status:false,isEditMode:false}])     
+        setToDo("")        
+    }
+    
     return (
         <div className="container">
             <div className="to-do-list">
@@ -25,28 +28,17 @@ const Learn = () => {
             
 
               <ul id="list">
-                    {toDoList.map(({text,status},i)=><li>
-                        <div className={`status-circle ${status ? "status-circle--active" : ""}`}
-                            onClick={()=>{
-                                setToDoList(prev => {
-                                let newTodoList = [...prev];
-                                let newTodo = { ...newTodoList[i] };
-                                newTodo.status = !newTodo.status;
-                                newTodoList[i] = newTodo;
-                                return newTodoList;
-                                })
-                            }}
-                        />
+                    {toDoList.map((data,i)=>
+                    <Todo
+                    {...data}
+                    key={i}
+                    i={i}
+                    setToDoList={setToDoList}
+                    toDoList={toDoList}
 
-                        <div className="todo-text">
-                            {text}
-                        </div>
-                        <div className="to-do-close-button"
-                            onClick={() => {
-                                setToDoList(toDoList.filter((_value, index) => i !== index
-                                ));
-                            } } />
-                    </li>)}
+                  />
+                    )}
+
 
 
               </ul>

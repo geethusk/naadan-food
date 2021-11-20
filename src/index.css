@@ -209,7 +209,7 @@ select{
 .todo-text{
     width:80%;
 }
-.to-do-close-button{
+.to-do-close-button,.todo-edit-button,.todo-edit-cancel-button,.todo-edit-save-button{
     /* background-color: rgb(105, 228, 152); */
     width:20px;
     height:20px;
@@ -218,11 +218,12 @@ select{
     background-repeat: no-repeat;
     cursor: pointer;
     background-position:center; 
+    background-size: 100%;
 }
 li{
     list-style:none;
     display:grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns:auto 1fr auto auto;
     align-items: center;
     gap:20px;
     margin: 5px 0;
@@ -235,4 +236,34 @@ li{
     background-color:green;
     border: solid 5px white;
 }
-
+.todo-edit-button{
+    background-image: url(./assets/icons/pencil-alt-solid.svg);
+}
+.todo-edit-cancel-button{
+    width:20x;
+    height:20px;
+    background-image: url(./assets/icons/times-circle-regular.svg);
+}
+.todo-edit-text-container{
+    position:relative;
+}
+.todo-edit-save-button{
+    background-image: url(./assets/icons/check-circle-regular.svg);
+}
+.todo-edit-text-field{
+    width:100%;
+    padding:8px 40px 8px 10px;
+    border:none;
+}
+.todo-error-text{
+    width:70%;
+    color:red;
+    text-align:right;
+    padding:0 20px;
+}
+.todo-edit-cancel-button,.todo-error-text{
+    position:absolute;
+    right:5px;
+    top:50%;
+    transform:translateY(-50%);
+}
