@@ -11,6 +11,7 @@ const Todo = ({
  })=>{
     const [editText,setEditText]=useState(text);
     const [errorTextVisibility,setErrorTextVisibility]=useState(false);
+    const [duplicateError,setDuplicateError]=useState(false);
      return (  
               
               <li>
@@ -51,6 +52,9 @@ const Todo = ({
                         {errorTextVisibility && <div className="todo-error-text">
                             Oops....!!Enter Something
                             </div>}
+                            {duplicateError && <div className="todo-error-text">
+                          pardon....!!Already Exist
+                        </div>} 
                         </div>
                         <div className="todo-edit-save-button"
                            onClick={
@@ -61,7 +65,16 @@ const Todo = ({
                                 setErrorTextVisibility(false)
                             },1500)
                             return
-                            }  
+                            } 
+                            if(toDoList.filter(({text})=>text===editText).length){
+                                setDuplicateError(true);
+                                setTimeout(()=>{
+                                    setDuplicateError(false);
+                                },1500)
+                                return
+                            }
+
+                           
                             setToDoList(
                                 prev =>{
                                 let newTodoList = [...prev];
@@ -81,6 +94,7 @@ const Todo = ({
                         </div>
                       <div className="todo-edit-button"
                             onClick={()=>{
+                                if(toDoList.filter(({isEditMode})=>isEditMode).length)return ;
                                 setToDoList(prev => {
                                     let newTodoList = [...prev];
                                     let newTodo = { ...newTodoList[i] };

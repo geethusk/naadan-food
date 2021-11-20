@@ -7,10 +7,21 @@ import Todo from "./Components/Todo"
 const Learn = () => {
     const [toDoList, setToDoList ] = useState([]);
     const [toDo, setToDo] = useState("");
-    // const [editField,setEditField]=useState();
+    const [duplicateError,setDuplicateError]=useState(false);
     const addToDoList=()=>{
         if(!toDo)return 
-        setToDoList(prev=>[...prev,{text:toDo,status:false,isEditMode:false}])     
+            if(toDoList.filter(({text})=>toDo===text).length){
+                setDuplicateError(true);
+                setTimeout(()=>{
+                    setDuplicateError(false);
+                },1500)
+                return
+            }
+        setToDoList(prev=>[...prev,
+            {text:toDo,
+            status:false,
+            isEditMode:false}
+        ])     
         setToDo("")        
     }
     
@@ -25,6 +36,10 @@ const Learn = () => {
             }}/>
             <button className="to-do-add" onClick={addToDoList}> 
                 ADD</button></div>
+                {duplicateError && <div className="duplicate-error">
+                          pardon....!!Already Exist
+                            </div>}
+                
             
 
               <ul id="list">

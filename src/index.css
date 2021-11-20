@@ -255,15 +255,16 @@ li{
     padding:8px 40px 8px 10px;
     border:none;
 }
-.todo-error-text{
-    width:70%;
-    color:red;
-    text-align:right;
-    padding:0 20px;
-}
 .todo-edit-cancel-button,.todo-error-text{
     position:absolute;
     right:5px;
     top:50%;
     transform:translateY(-50%);
+}
+
+.todo-error-text ,.duplicate-error{
+    width:70%;
+    color:red;
+    text-align:right;
+    right:30px;
 }
