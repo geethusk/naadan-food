@@ -1,4 +1,5 @@
 import Home from './Home'
+import CreateUser from './CreateUser';
 
 import {
   BrowserRouter as Router,
@@ -12,7 +13,8 @@ const App = () => {
   return (
    <Router>
      <Switch>
-      <Route path="/learn" component={Learn}/>
+      <Route path="/learn/:user" component={Learn}/>
+      <Route path="/learn" component={CreateUser}></Route>
        <Route path="/" component={Home}/>
        
     </Switch>

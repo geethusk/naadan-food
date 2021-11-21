@@ -1,13 +1,34 @@
 import React from 'react'
-import {useState}  from 'react';
+import {useState,useEffect}  from 'react';
 import './index.css'
 import Todo from "./Components/Todo"
+import postData from "./postData"
 
 
-const Learn = () => {
+const Learn = ({match,history}) => {
+    const user=match.params.user;
     const [toDoList, setToDoList ] = useState([]);
     const [toDo, setToDo] = useState("");
     const [duplicateError,setDuplicateError]=useState(false);
+useEffect(() => {
+         fetch(`http://192.168.1.42:8086/todos/${user}`)
+
+        .then((result)=>result.json())
+        .then((value)=>{
+            if(!value.length){
+                history.push("/learn")
+                return
+            }
+            setToDoList(value[0].todos.map(({text,status})=>{
+                return{
+                    text,
+                    status,
+                    isEditMode:false
+                }
+            }));
+        })
+},[]);  //empty array passing , if we need to take a particular element change
+    
     const addToDoList=()=>{
         if(!toDo)return 
             if(toDoList.filter(({text})=>toDo.toLowerCase()===text.toLowerCase()).length){
@@ -17,6 +38,22 @@ const Learn = () => {
                 },1500)
                 return
             }
+            postData("/todos",{
+                user,
+                todos:[
+                    ...toDoList.map(({text,status})=>{
+                        return{
+                            text,
+                            status
+                        }
+                    }),
+                    {
+                        text:toDo,
+                        status:false
+
+                    },
+                ]
+            });
         setToDoList(prev=>[...prev,
             {text:toDo,
             status:false,
@@ -50,6 +87,7 @@ const Learn = () => {
                     i={i}
                     setToDoList={setToDoList}
                     toDoList={toDoList}
+                    user={user}
 
                   />
                     )}

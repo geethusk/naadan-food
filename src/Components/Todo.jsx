@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import postData from '../postData';
 
 const Todo = ({
     status,
@@ -8,6 +9,7 @@ const Todo = ({
     setToDoList,
     toDoList,
     isEditMode,
+    user,
  })=>{
     const [editText,setEditText]=useState(text);
     const [errorTextVisibility,setErrorTextVisibility]=useState(false);
@@ -17,6 +19,25 @@ const Todo = ({
               <li>
                         <div className={`status-circle ${status ? "status-circle--active" : ""}`}
                             onClick={()=>{
+                                postData("/todos",{
+                                    user,
+                                    todos:[
+                                        ...toDoList.map(({text,status},index)=>{
+                                            if(i===index){
+                                                return{
+                                                    text,
+                                                    status:!status
+                                                }
+                                            }
+                                            return{
+                                                text,
+                                                status
+                                            }
+                                           
+                                        })
+                                    ]
+                                       
+                                }); 
                                 setToDoList(prev => {
                                 let newTodoList = [...prev];
                                 let newTodo = { ...newTodoList[i] };
@@ -65,7 +86,26 @@ const Todo = ({
                                 setErrorTextVisibility(false)
                             },1500)
                             return
-                            } 
+                            }
+                            postData("/todos",{
+                                user,
+                                todos:[
+                                    ...toDoList.map(({text,status},index)=>{
+                                        if(i===index){
+                                            return{
+                                                text:editText,
+                                                status
+                                            }
+                                        }
+                                        return{
+                                            text,
+                                            status
+                                        }
+                                       
+                                    })
+                                ]
+                                   
+                            }); 
                             if(text!==editText && toDoList.filter(({text})=>text.toLowerCase()===editText.toLowerCase()).length){
                                 setDuplicateError(true);
                                 setTimeout(()=>{
@@ -107,6 +147,11 @@ const Todo = ({
                          </>}
                         <div className="to-do-close-button"
                             onClick={() => {
+                                postData("/todos",{
+                                    user,
+                                    todos:toDoList.filter((_value, index) => i !== index)
+                                       
+                                });
                                 setToDoList(toDoList.filter((_value, index) => i !== index
                                 ));
                             } } />
