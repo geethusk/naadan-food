@@ -6,7 +6,7 @@ import postData from "./postData"
 
 
 const Learn = ({match,history}) => {
-    const user=match.params.user;
+    const user=localStorage.getItem("userName");
     const [toDoList, setToDoList ] = useState([]);
     const [toDo, setToDo] = useState("");
     const [duplicateError,setDuplicateError]=useState(false);
@@ -16,6 +16,7 @@ useEffect(() => {
         .then((result)=>result.json())
         .then((value)=>{
             if(!value.length){
+                localStorage.removeItem("userName");
                 history.push("/learn")
                 return
             }
@@ -61,23 +62,35 @@ useEffect(() => {
         ])     
         setToDo("")        
     }
+    if(!localStorage.getItem("userName")){
+        history.push("/learn")
+    }
     
     return (
         <div className="container">
             <div className="to-do-list">
-                <h1>Todos</h1>
+                <h1>Todos({user})</h1>
                 <div className="input-section">
                 <input className="todo-area" type="text" value={toDo} placeholder="Type Here..."
                  onChange={(e)=>{
                 setToDo(e.target.value)
             }}/>
+            
             <button className="to-do-add" onClick={addToDoList}> 
                 ADD</button></div>
                 {duplicateError && <div className="duplicate-error">
                           pardon....!!Already Exist
                             </div>}
                 
-            
+                            <div className="logout-section">
+                    <button
+                    onClick={()=>{
+                        localStorage.removeItem("userName");
+                        history.push("/learn/login")
+                    }}>Logout</button>
+                    
+                   
+                </div>
 
               <ul id="list">
                     {toDoList.map((data,i)=>

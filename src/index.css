@@ -286,3 +286,21 @@ html,body,#root,.container,.to-do-list{
     }
 
 }
+.logout-section{
+    margin:15px 0;
+    display:grid;
+    justify-content: right;
+}
+.logout-section button {
+    background-color: rgba(6, 78, 78, 0.726);
+}
+.error-text{
+    margin:5px 0;
+    color:red;
+    text-align: center;
+}
+.link-section {
+    text-align:center;
+    margin:5px, 0;
+    padding:10px 5px;
+}

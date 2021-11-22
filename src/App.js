@@ -1,5 +1,6 @@
 import Home from './Home'
-import CreateUser from './CreateUser';
+import Login from './Login'
+import CreateUser from './CreateUser'
 
 import {
   BrowserRouter as Router,
@@ -13,7 +14,8 @@ const App = () => {
   return (
    <Router>
      <Switch>
-      <Route path="/learn/:user" component={Learn}/>
+      <Route path="/learn/user" component={Learn}/>
+      <Route path="/learn/login" component={Login}></Route>
       <Route path="/learn" component={CreateUser}></Route>
        <Route path="/" component={Home}/>
        
