@@ -1,0 +1,14 @@
+*{
+    margin:0;
+}
+.container{
+    display: grid;
+    justify-content: center;
+    gap:10px;
+    margin:10px;
+}
+h1{
+    color: #6e741c;
+    font-size: 70px;
+    text-shadow: 5px 3px 5px black;
+}
