@@ -1,0 +1,31 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+    padding:0;
+}
+html,body,#root{
+    height:100%;
+}
+.grid-container{
+    margin:auto;
+    height:100%;
+    display:grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(8,1fr);
+    padding:20px;
+    max-width:600px;
+    height:600px;
+    background-color: black;
+
+
+
+
+    /* justify-content:center; */
+}
+.grid-container div{
+    display:grid;
+    font-family:'Segoe UI';
+    font-size:20px;
+   place-items:center;
+}
+
