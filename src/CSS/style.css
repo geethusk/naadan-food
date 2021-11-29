@@ -3,6 +3,9 @@
     box-sizing: border-box;
     padding:0;
 }
+#root{
+    padding:20px;
+}
 html,body,#root{
     height:100%;
 }
@@ -12,20 +15,26 @@ html,body,#root{
     display:grid;
     grid-template-columns: repeat(8,1fr);
     grid-template-rows: repeat(8,1fr);
-    padding:20px;
+    padding:10px;
     max-width:600px;
     height:600px;
-    background-color: black;
+    background-color:black;
+    box-shadow: 0 2px 3px 4px grey;
 
-
-
-
-    /* justify-content:center; */
+   /* justify-content:center; */
 }
 .grid-container div{
     display:grid;
-    font-family:'Segoe UI';
-    font-size:20px;
    place-items:center;
+   /* padding:10px 25px; */
+   /* height:calc(580px/8) */
+}
+.chess-piece,.chess-piece-black,.rook-piece{
+    width:30px;
+    height:50px;
+}
+.rook-piece-black{
+    width:30px;
+    height:50px;
 }
 
