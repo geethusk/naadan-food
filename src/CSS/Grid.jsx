@@ -107,25 +107,33 @@ const chessInitialState=[
 
 
 const Grid = () => {
-    // console.log(chessState);
     const [chessState,setChessState]=useState(chessInitialState)
     const[activeColumn,setActiveColumn]=useState([null,null])
     const movePiece=(i,j,x,y)=>{
+        if(i===x && j===y) return 
+        if(chessState[x][y].currentPiece === soldierImageBlack && i>=x) return
+        if(chessState[x][y].currentPiece === soldierImage && i<=x) return
+        if(chessState[x][y].currentPiece===blackQueen ||chessState[x][y].currentPiece===whiteQueen){
+            if(i!==x && j!==y && Math.abs(i-x)!==Math.abs(j-y)) return
+        }
         setChessState(
             prev=>{
                 let newState=[...prev]
                 let newColumn=[...newState[i]]
                 let initialColumn=[...newState[x]]
-
-                newColumn[j]=prev[x][y]
-                
-                initialColumn[y]={
-                    currentPiece:null 
+                if(i === x){
+                    newColumn[j] = prev[x][y]
+                    newColumn[y]={
+                        currentPiece:null 
+                    }
+                }else{
+                    newColumn[j] = prev[x][y]
+                    initialColumn[y]={
+                        currentPiece:null 
+                    }
+                    newState[x]=initialColumn
                 }
-
-                
                 newState[i]=newColumn
-                newState[x]=initialColumn
                 return newState;
             }
         )
@@ -143,7 +151,13 @@ const Grid = () => {
                     }
                     onClick={()=>{
                         if(currentPiece){
-                            setActiveColumn([i,j])
+                            if(activeColumn[0]===null){
+                                setActiveColumn([i,j])
+                            }else{
+                                movePiece(i,j,activeColumn[0],activeColumn[1])
+                                setActiveColumn([null,null]) 
+                            }
+                            
                         }else{
                             if(activeColumn[0]===null) return
                             movePiece(i,j,activeColumn[0],activeColumn[1])
